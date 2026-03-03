@@ -1,5 +1,5 @@
-const btn = document.getElementById("btn");
+const btn = document.getElementById("contactBtn");
 
 btn.addEventListener("click", function() {
-    alert("Session 1 completed");
+    alert("You can contact me soon 🚀");
 });
