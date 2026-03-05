@@ -17,3 +17,14 @@ Features:
 - Change button text
 - Hover effect
 - Change color interaction
+
+# Coding Session 3
+Practicing JavaScript shopping cart functionality.
+
+Features:
+- Add product to cart
+- Remove product from cart
+- Dynamic cart rendering
+- Cart counter update
+- Basic cart styling
+
