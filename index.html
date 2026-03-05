@@ -3,18 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Coding Session 2</title>
+    <title>Coding Session 3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <h2>Cart: <span id="cart-count">0</span></h2>
 
-    <button id="btn">Open box</button>
-    <button id="colorBtn">Change color</button>
 
-    <div id="box" class="box">
-        Hello from the box
-    </div>
+    <button onclick="addToCart('T-shirt', 20)">
+        Add T-shirt
+    </button>
+
+    <button onclick="addToCart('Sneakers', 50)">
+        Add Sneakers
+    </button>
+
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+
+    
 
     <script src="script.js"></script>
 

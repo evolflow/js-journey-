@@ -1,27 +1,63 @@
-let button = document.getElementById("btn");
-let box = document.getElementById("box");
+let cart = [];
 
-button.addEventListener("click", function() {
-    box.classList.toggle("show");
+let cartCount = document.getElementById("cart-count");
+let cartItems = document.getElementById("cart-items");
 
-    if (box.classList.contains("show")) {
-        button.textContent = "Close box";
-    } else {
-        button.textContent = "Open box";
-    }
-});
+function updateCartCount() {
+    cartCount.textContent = cart.length;
+}
 
-    box.addEventListener("mouseover", function() {
-        box.style.background = "orange";
+function addToCart(productName, price) {
+    cart.push({
+        name: productName,
+        price: price
     });
 
-    box.addEventListener("mouseout", function() {
-        box.style.background = "lightblue";
+    updateCartCount();
+
+    renderCart();
+
+    console.log(cart);
+}
+
+function getTotal() {
+    let total = 0;
+
+    cart.forEach(function(item) {
+        total += item.price;
+    });
+
+    console.log("Total:", total);
+}
+
+function showCart() {
+    cart.forEach(function(item) {
+        console.log(item.name + " - $" + item.price);
+    });
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+
+    updateCartCount();
+
+    renderCart();
+
+    console.log(cart);
+}
+
+function renderCart() {
+
+    cartItems.innerHTML = "";
+
+    cart.forEach(function(item,index) {
+        cartItems.innerHTML +=`
+        <li>
+          ${item.name} - $${item.price}
+          <button onclick="removeFromCart(${index})">remove</button>
+        </li>
+    `;
     
-});
+    });
 
-let colorButton = document.getElementById("colorBtn");
-
-colorButton.addEventListener("click", function() {
-    box.style.background = "green";
-});
+}
