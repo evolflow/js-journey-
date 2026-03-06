@@ -2,29 +2,73 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Coding Session 3</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Coding Session 4</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <h2>Cart: <span id="cart-count">0</span></h2>
+
+  <nav class="navbar">
+
+    <div class="logo">LOGO</div>
+
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <div class="login">
+      Login
+    </div>
+
+  </nav>
 
 
-    <button onclick="addToCart('T-shirt', 20)">
-        Add T-shirt
-    </button>
+  <div class="layout">
 
-    <button onclick="addToCart('Sneakers', 50)">
-        Add Sneakers
-    </button>
+    <aside class="sidebar">
+      <ul>
+        <li>Dashboard</li>
+        <li>Products</li>
+        <li>Orders</li>
+        <li>Settings</li>
+      </ul>
+    </aside>
 
-    <h3>Your Cart</h3>
-    <ul id="cart-items"></ul>
+    <main class="content">
 
-    
+      <div class="products">
 
-    <script src="script.js"></script>
+       <div class="card">
+        <h3>Product 1</h3>
+        <p>Nice product</p>
+       </div>
+
+       <div class="card">
+        <h3>Product 2</h3>
+        <p>Nice product</p>
+       </div>
+
+       <div class="card">
+        <h3>Product 3</h3>
+        <p>Nice product</p>
+       </div>
+
+       </div>
+     
+    </main>
+
+  </div>
+
+
+  <footer class="footer">
+    Footer
+  </footer>
+
+
+  <script src="script.js"></script>
 
 </body>
 

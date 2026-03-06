@@ -28,3 +28,14 @@ Features:
 - Cart counter update
 - Basic cart styling
 
+## Coding Session 4
+Practicing CSS Flexbox layout.
+
+Features:
+- Navbar layout with Flexbox
+- Sidebar and content structure
+- Flexbox alignment (justify-content, align-items)
+- Gap spacing
+- flex-grow usage
+- Basic page styling 
+
