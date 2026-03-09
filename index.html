@@ -3,73 +3,48 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Coding Session 4</title>
+  <title>Coding Session 5</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <nav class="navbar">
+  <h2>Products</h2>
 
-    <div class="logo">LOGO</div>
+  <button onclick="addProduct('T-shirt', 20)">
+    Add T-shirt - $20
+  </button>
 
-    <div class="menu">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </div>
+  <button onclick="addProduct('Shoes', 50)">
+    Add Shoes - $50
+  </button>
 
-    <div class="login">
-      Login
-    </div>
-
-  </nav>
+  <button onclick="addProduct('Hat', 15)">
+    Add Hat - $15
+  </button>
 
 
-  <div class="layout">
+  <h3>Cart</h3>
 
-    <aside class="sidebar">
-      <ul>
-        <li>Dashboard</li>
-        <li>Products</li>
-        <li>Orders</li>
-        <li>Settings</li>
-      </ul>
-    </aside>
+  <p id="items-count">Items: 0</p>
+  <p id="total-price">Total: $0</p>
 
-    <main class="content">
+  <div id="cart-list"></div>
 
-      <div class="products">
+  <button onclick="clearCart()">
+    Clear Cart
+  </button>
 
-       <div class="card">
-        <h3>Product 1</h3>
-        <p>Nice product</p>
-       </div>
+  <button onclick="removeLastProduct()">
+    Remove Last Product 
+  </button>
 
-       <div class="card">
-        <h3>Product 2</h3>
-        <p>Nice product</p>
-       </div>
-
-       <div class="card">
-        <h3>Product 3</h3>
-        <p>Nice product</p>
-       </div>
-
-       </div>
-     
-    </main>
-
-  </div>
-
-
-  <footer class="footer">
-    Footer
-  </footer>
+  <button onclick="showCart()">
+    Show Cart In Console
+  </button>
 
 
   <script src="script.js"></script>
 
 </body>
-
 </html>

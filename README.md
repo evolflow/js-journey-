@@ -39,3 +39,12 @@ Features:
 - flex-grow usage
 - Basic page styling 
 
+## Coding Session 5
+
+- Implemented shopping cart logic
+- Added product array with objects
+- Calculated total price
+- Implemented remove last product
+- Displayed cart items in HTML
+- Added remove specific product functionality
+
