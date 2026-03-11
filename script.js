@@ -1,79 +1,32 @@
-let cart = []
-let total= 0
+let colors = [
+  "#ff6b6b",
+  "#6bc5ff",
+  "#6bff95",
+  "#ffd86b",
+  "#c96bff"
+];
 
-function addProduct(name, price) {
+let phrases = [
+    "Consistency beats talent",
+    "Small steps every day",
+    "Don't give up",
+    "Progress takes time"
+];
 
-    let product = {
-        name,
-        price
-    }
+let button = document.getElementById("btn");
+let text = document.getElementById("text");
 
-    cart.push(product)
+button.onclick = function(){
+    let random = Math.floor(Math.random() * phrases.length);
+    text.innerText = phrases[random];
+    text.classList.remove("show");
 
-    total = total + price
-
-    updateCart()
-}
-
-function updateCart() {
-
-    document.getElementById("items-count").innerText =
-    "Items: " + cart.length
-
-    document.getElementById("total-price").innerText =
-    "Total: $" + total
-
+    setTimeout(function(){
+        text.classList.add("show");
+    },10);
     
-    showCart()
+    let randomColor = Math.floor(Math.random() * colors.length);
 
+    document.body.style.background = colors[randomColor];
+};
 
-
-}
-
-function clearCart() {
-
-    cart = []
-
-    total = 0 
-
-    updateCart()
-}
-
-function removeLastProduct() {
-
-    if (cart.length === 0) {
-        return
-    }
-
-    let removedProduct = cart.pop()
-
-    total = total - removedProduct.price
-
-    updateCart()
-}
-
-function showCart() {
-
-    let cartList = document.getElementById("cart-list")
-
-    cartList.innerHTML = ""
-
-    for (let i = 0; i < cart.length; i++) {
-
-        let item = cart[i]
-
-        cartList.innerHTML += item.name + " - $" + item.price +
-         "<button onclick='removeProduct(" + i + ")'>Remove</button><br>"
-    }
-
-    function removedProduct(index) {
-        let removedProduct = cart[index]
-
-        total = total - removedProduct.price
-
-        cart.splice(index, 1)
-
-        updateCart()
-    }
-
-}

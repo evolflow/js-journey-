@@ -48,3 +48,13 @@ Features:
 - Displayed cart items in HTML
 - Added remove specific product functionality
 
+## Coding Session 6
+Practicing JavaScript random generator and DOM interaction.
+
+Features:
+- Random motivation quote generator
+- Button click event
+- JavaScript array usage
+- Random index generation
+- Fade-in text animation
+- Dynamic background color change
