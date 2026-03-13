@@ -1,32 +1,69 @@
-let colors = [
-  "#ff6b6b",
-  "#6bc5ff",
-  "#6bff95",
-  "#ffd86b",
-  "#c96bff"
+let cart = [
+    {
+     name: "T-shirt",
+     price: 25,
+     quantity: 1
+    },
+    {
+     name: "Shoes",
+     price: 80,
+     quantity: 1
+    }
 ];
 
-let phrases = [
-    "Consistency beats talent",
-    "Small steps every day",
-    "Don't give up",
-    "Progress takes time"
-];
+function renderCart() {
+  const cartContainer = document.getElementById("cart");
 
-let button = document.getElementById("btn");
-let text = document.getElementById("text");
+  cartContainer.innerHTML = "";
 
-button.onclick = function(){
-    let random = Math.floor(Math.random() * phrases.length);
-    text.innerText = phrases[random];
-    text.classList.remove("show");
+  cart.forEach((product, index) => {
 
-    setTimeout(function(){
-        text.classList.add("show");
-    },10);
+    cartContainer.innerHTML += `
+     <div>
+      <p>${product.name}</p>
+      <p>${product.price}$</p>
+      <p>Quantity: ${product.quantity}</p>
+
+      <button onclick="increase(${index})">+</button>
+      <button onclick="decrease(${index})">-</button>
+     </div>
+    `;
+  
+  });
+
+  calculateTotal();
+}
+
+function increase(index) {
+  cart[index].quantity += 1;
+
+  renderCart();
+
+}
+
+function decrease(index) {
+  if (cart[index].quantity > 1) {
+    cart[index].quantity -= 1;
+
+  }
+
+  renderCart();
+
+}
+
+function calculateTotal() {
+  let total = 0;
+  
+  cart.forEach(product => {
+
+    total += product.price * product.quantity;
+
+  });
+
+  document.getElementById("total").innerText = "Total: $" + total;
+
+}
+
+renderCart();
     
-    let randomColor = Math.floor(Math.random() * colors.length);
-
-    document.body.style.background = colors[randomColor];
-};
 

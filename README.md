@@ -58,3 +58,27 @@ Features:
 - Random index generation
 - Fade-in text animation
 - Dynamic background color change
+
+## Coding Session 7
+Practicing JavaScript shopping cart quantity control and DOM updates.
+
+Features:
+- Product quantity property
+- Increase quantity button
+- Decrease quantity button
+- Prevent quantity going below 1
+- Dynamic cart re-render
+- Automatic total price recalculation
+
+## Developer Dictionary
+
+- render — display something on the screen
+- update — refresh or change data
+- state — current data of the application
+- add — add something
+- remove — delete something
+- increase — increase a value
+- decrease — decrease a value
+- fetch — get data from a server
+- handle — process an event or action
+- index — position of an element in an array
