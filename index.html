@@ -1,23 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <title>Coding Session 7</title>
+  <title>Coding Session 8</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Cart</h1>
+  <button class="add-to-cart" data-id="1" data-name="Apple" data-price="50">
+    Add Apple
+  </button>
 
-<div id="cart"></div>
+  <button class="add-to-cart" data-id="2" data-name="Banana" data-price="30">
+    Add Banana
+  </button>
 
-<h2 id="total"></h2>
+  <div id="cart"></div>
+  <div id="total"></div>
 
+  <button id="clear-cart">Clear Cart</button>
+  <button id="open-cart">Open Cart</button>
 
-  
+  <!-- MODAL -->
+  <div id="modal" class="hidden">
+    <div id="modal-content">
+      <button id="close-cart">X</button>
+      <div id="modal-cart"></div>
+      <div id="modal-total"></div>
+    </div>
+  </div>
 
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,69 +1,124 @@
-let cart = [
-    {
-     name: "T-shirt",
-     price: 25,
-     quantity: 1
-    },
-    {
-     name: "Shoes",
-     price: 80,
-     quantity: 1
-    }
-];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function renderCart() {
-  const cartContainer = document.getElementById("cart");
+const cartEl = document.getElementById("cart");
+const totalEl = document.getElementById("total");
+const clearBtn = document.getElementById("clear-cart");
 
-  cartContainer.innerHTML = "";
+const modal = document.getElementById("modal");
+const openBtn = document.getElementById("open-cart");
+const closeBtn = document.getElementById("close-cart");
 
-  cart.forEach((product, index) => {
+const modalCart = document.getElementById("modal-cart");
+const modalTotal = document.getElementById("modal-total");
 
-    cartContainer.innerHTML += `
-     <div>
-      <p>${product.name}</p>
-      <p>${product.price}$</p>
-      <p>Quantity: ${product.quantity}</p>
+renderCart();
 
-      <button onclick="increase(${index})">+</button>
-      <button onclick="decrease(${index})">-</button>
-     </div>
-    `;
-  
-  });
+// ➕ ДОДАТИ ТОВАР
+function addToCart(product) {
+  const existing = cart.find(item => item.id === product.id);
 
-  calculateTotal();
-}
-
-function increase(index) {
-  cart[index].quantity += 1;
-
-  renderCart();
-
-}
-
-function decrease(index) {
-  if (cart[index].quantity > 1) {
-    cart[index].quantity -= 1;
-
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
   }
 
   renderCart();
-
 }
 
-function calculateTotal() {
-  let total = 0;
-  
-  cart.forEach(product => {
+// 🎨 РЕНДЕР ОСНОВНОЇ КОРЗИНИ
+function renderCart() {
+  cartEl.innerHTML = "";
 
-    total += product.price * product.quantity;
+  cart.forEach(item => {
+    const div = document.createElement("div");
 
+    div.innerHTML = `
+      ${item.name}
+      <button class="minus" data-id="${item.id}">-</button>
+      ${item.qty}
+      <button class="plus" data-id="${item.id}">+</button>
+    `;
+
+    cartEl.appendChild(div);
   });
 
-  document.getElementById("total").innerText = "Total: $" + total;
-
+  localStorage.setItem("cart", JSON.stringify(cart));
+  totalEl.textContent = "Total: " + getTotal();
 }
 
-renderCart();
-    
+// 💰 TOTAL
+function getTotal() {
+  let total = 0;
 
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+
+  return total;
+}
+
+// 🧠 МОДАЛ РЕНДЕР
+function renderModalCart() {
+  modalCart.innerHTML = "";
+
+  cart.forEach(item => {
+    const div = document.createElement("div");
+    div.textContent = `${item.name} x${item.qty}`;
+    modalCart.appendChild(div);
+  });
+
+  modalTotal.textContent = "Total: " + getTotal();
+}
+
+// 🖱️ КНОПКИ ADD
+document.querySelectorAll(".add-to-cart").forEach(button => {
+  button.addEventListener("click", () => {
+    const product = {
+      id: Number(button.dataset.id),
+      name: button.dataset.name,
+      price: Number(button.dataset.price)
+    };
+
+    addToCart(product);
+  });
+});
+
+// ➕ ➖ КОНТРОЛЬ КІЛЬКОСТІ
+cartEl.addEventListener("click", (e) => {
+  const id = Number(e.target.dataset.id);
+
+  if (e.target.classList.contains("minus")) {
+    const item = cart.find(item => item.id === id);
+
+    if (item.qty > 1) {
+      item.qty--;
+    } else {
+      cart = cart.filter(item => item.id !== id);
+    }
+  }
+
+  if (e.target.classList.contains("plus")) {
+    const item = cart.find(item => item.id === id);
+    item.qty++;
+  }
+
+  renderCart();
+});
+
+// 🧹 CLEAR
+clearBtn.addEventListener("click", () => {
+  cart = [];
+  renderCart();
+});
+
+// 🪟 OPEN MODAL
+openBtn.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+  renderModalCart();
+});
+
+// ❌ CLOSE MODAL
+closeBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});

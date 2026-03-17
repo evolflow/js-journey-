@@ -82,3 +82,15 @@ Features:
 - fetch — get data from a server
 - handle — process an event or action
 - index — position of an element in an array
+
+## Coding Session 8
+
+* Built full shopping cart logic (add / plus / minus / remove)
+* Implemented cart state with array of objects
+* Added dynamic rendering to DOM
+* Calculated total price with qty
+* Connected buttons using dataset
+* Added localStorage (cart persists after reload)
+* Implemented Clear Cart feature
+* Built modal cart (open / close)
+* Synced modal with main cart
