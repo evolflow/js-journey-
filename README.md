@@ -94,3 +94,15 @@ Features:
 * Implemented Clear Cart feature
 * Built modal cart (open / close)
 * Synced modal with main cart
+
+## Coding Session 9
+
+* Built modal cart (open / close with overlay)
+* Fixed UI structure (removed duplicate IDs)
+* Improved cart rendering inside modal
+* Added Clear Cart functionality
+* Connected modal with cart state
+* Implemented localStorage (persist after reload)
+* Practiced find() vs filter()
+* Worked with DOM updates and event handling
+

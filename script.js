@@ -1,124 +1,96 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = [];
 
-const cartEl = document.getElementById("cart");
-const totalEl = document.getElementById("total");
-const clearBtn = document.getElementById("clear-cart");
+let savedCart = localStorage.getItem("cart");
 
-const modal = document.getElementById("modal");
-const openBtn = document.getElementById("open-cart");
-const closeBtn = document.getElementById("close-cart");
+if (savedCart) {
+  cart = JSON.parse(savedCart);
+}
 
-const modalCart = document.getElementById("modal-cart");
-const modalTotal = document.getElementById("modal-total");
+function addToCart(name, price){
+  let existingItem = cart.find(item => item.name === name);
 
-renderCart();
-
-// ➕ ДОДАТИ ТОВАР
-function addToCart(product) {
-  const existing = cart.find(item => item.id === product.id);
-
-  if (existing) {
-    existing.qty++;
+  if(existingItem) {
+    existingItem.quantity++;
   } else {
-    cart.push({ ...product, qty: 1 });
+    cart.push({
+      name: name,
+      price: price,
+      quantity: 1
+    });
   }
 
-  renderCart();
+  renderCart(); 
 }
 
-// 🎨 РЕНДЕР ОСНОВНОЇ КОРЗИНИ
-function renderCart() {
-  cartEl.innerHTML = "";
-
-  cart.forEach(item => {
-    const div = document.createElement("div");
-
-    div.innerHTML = `
-      ${item.name}
-      <button class="minus" data-id="${item.id}">-</button>
-      ${item.qty}
-      <button class="plus" data-id="${item.id}">+</button>
-    `;
-
-    cartEl.appendChild(div);
-  });
-
-  localStorage.setItem("cart", JSON.stringify(cart));
-  totalEl.textContent = "Total: " + getTotal();
-}
-
-// 💰 TOTAL
 function getTotal() {
   let total = 0;
 
   cart.forEach(item => {
-    total += item.price * item.qty;
+    total += item.price * item.quantity;
   });
 
   return total;
 }
 
-// 🧠 МОДАЛ РЕНДЕР
-function renderModalCart() {
-  modalCart.innerHTML = "";
+function renderCart() {
+  let cartDiv = document.getElementById("cart");
+  cartDiv.innerHTML = "";
 
+  if (cart.length === 0) {
+    cartDiv.innerHTML = "<p>Cart is empty</p>";
+  } else {
   cart.forEach(item => {
-    const div = document.createElement("div");
-    div.textContent = `${item.name} x${item.qty}`;
-    modalCart.appendChild(div);
-  });
+    cartDiv.innerHTML += `
+      <p>
+        ${item.name} - ${item.price} x ${item.quantity}
+        <button onclick="increase('${item.name}')">+</button>
+        <button onclick="decrease('${item.name}')">-</button>
+        <button onclick="removeItem('${item.name}')">❌</button>
 
-  modalTotal.textContent = "Total: " + getTotal();
+      </p>
+    `;
+  });
 }
 
-// 🖱️ КНОПКИ ADD
-document.querySelectorAll(".add-to-cart").forEach(button => {
-  button.addEventListener("click", () => {
-    const product = {
-      id: Number(button.dataset.id),
-      name: button.dataset.name,
-      price: Number(button.dataset.price)
-    };
+  document.getElementById("total").innerHTML = getTotal();
 
-    addToCart(product);
-  });
-});
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
 
-// ➕ ➖ КОНТРОЛЬ КІЛЬКОСТІ
-cartEl.addEventListener("click", (e) => {
-  const id = Number(e.target.dataset.id);
+function increase(name) {
+  let item = cart.find(i => i.name === name);
+  item.quantity++;
+  renderCart();
+}
 
-  if (e.target.classList.contains("minus")) {
-    const item = cart.find(item => item.id === id);
+function decrease(name) {
+  let item = cart.find(i => i.name === name);
 
-    if (item.qty > 1) {
-      item.qty--;
-    } else {
-      cart = cart.filter(item => item.id !== id);
-    }
-  }
-
-  if (e.target.classList.contains("plus")) {
-    const item = cart.find(item => item.id === id);
-    item.qty++;
+  if (item.quantity > 1) {
+    item.quantity--;
   }
 
   renderCart();
-});
+}
 
-// 🧹 CLEAR
-clearBtn.addEventListener("click", () => {
+function removeItem(name) {
+  cart = cart.filter(item => item.name !== name);
+  renderCart();
+}
+
+function clearCart() {
   cart = [];
   renderCart();
-});
+}
 
-// 🪟 OPEN MODAL
-openBtn.addEventListener("click", () => {
-  modal.classList.remove("hidden");
-  renderModalCart();
-});
+function openCart() {
+  document.getElementById("cartModal").classList.add("active");
+  document.getElementById("overlay").classList.add("active");  
+}
 
-// ❌ CLOSE MODAL
-closeBtn.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
+function closeCart() {
+  document.getElementById("cartModal").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+renderCart()
