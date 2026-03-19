@@ -106,3 +106,33 @@ Features:
 * Practiced find() vs filter()
 * Worked with DOM updates and event handling
 
+## Coding Session 10
+
+* Started learning React (first session)
+* Understood useState (state management)
+* Built counter (increment / decrement / reset)
+* Created cart logic (add items to array)
+* Rendered list using map()
+* Implemented remove item (filter)
+* Calculated total price dynamically
+* Added Clear Cart functionality
+* Practiced working with objects in array
+* Understood React mindset (change data → UI updates)
+
+## What I understood
+
+* React works with data, not direct DOM manipulation
+* useState stores and updates data
+* UI re-renders automatically after state change
+* map() is used to display lists
+* filter() is used to remove items
+* Spread operator (...) creates new arrays (important in React)
+
+## Next Steps
+
+* Add quantity system (qty per item)
+* Add decrease button (-1 instead of delete)
+* Prevent duplicate items (merge logic)
+* Improve UI (layout / styling)
+* Build more complex components
+
